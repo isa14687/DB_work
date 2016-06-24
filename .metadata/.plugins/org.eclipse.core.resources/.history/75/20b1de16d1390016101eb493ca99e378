@@ -1,0 +1,55 @@
+package db;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JFrame;
+import javax.swing.event.AncestorListener;
+
+public class main {
+	static Connection Connect;
+	static Statement stm;
+	static ResultSet rs;
+
+	public static void main(String[] args) {
+		try {
+			Connect = DriverManager.getConnection("jdbc:sqlserver://163.17.136.91; databaseName=1410232023",
+					"1410232023", "As874001");
+			stm = Connect.createStatement();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UIInterface ui = new UIInterface();
+		ui.search.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String getBookName = ui.bookNameArea.getText();
+				String Command = "select * from BorrowDB ";
+				try {
+					rs = stm.executeQuery(Command);
+					StringBuffer buffer = new StringBuffer();
+					
+					while (rs.next()) {
+						buffer.append(
+								"<html>書本編號:  " + rs.getString(1) + "<br>" + "書名:" + rs.getString(2) + "<br><html>");
+					}
+					ui.showArea.setText(buffer.toString());
+
+				} catch (Exception ex) {
+					ui.showArea.setText("error");
+
+				}
+			}
+		});
+
+	}
+
+}

@@ -1,0 +1,60 @@
+package db;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class UIInterface {
+
+private JFrame View;
+public JLabel bookName;
+public JLabel showBookArea;
+public JLabel showBorrowArea;
+public JTextArea bookNameArea;
+public JButton search;
+
+
+	public UIInterface(){
+		 View = new JFrame();
+		View.setBounds(200, 100, 850, 530);
+		View.setLayout(null);
+		View.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setView();
+		
+	}
+	private void  setView(){
+
+		 bookName = new JLabel("®Ñ¦W:");
+		bookName.setBounds(10, 10, 50, 20);
+		
+		 showBookArea = new JLabel("result:");
+		 showBookArea.setBounds(10, 100, 100, 40);
+		
+		 showBorrowArea = new JLabel();
+		 showBorrowArea.setBounds(10, 150, 100, 40);
+			
+		 bookNameArea = new JTextArea();
+		bookNameArea.setBounds(100, 10, 100, 20);
+  
+		 search = new JButton("search");
+		search.setBounds(10, 70, 90, 25);
+		
+		
+		View.add(bookName);
+		View.add(bookNameArea);
+		View.add(showBookArea);
+		View.add(showBorrowArea);
+
+		View.add(search);
+		
+		View.setVisible(true);
+	
+
+	}
+
+}

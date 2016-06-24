@@ -1,0 +1,15 @@
+package db;
+
+import javax.swing.JFrame;
+
+public class UIInterface {
+
+	public UIInterface(){
+		JFrame View = new JFrame();
+		View.setBounds(200, 100, 850, 530);
+		View.setLayout(null);
+		View.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		View.setVisible(true);
+	}
+
+}

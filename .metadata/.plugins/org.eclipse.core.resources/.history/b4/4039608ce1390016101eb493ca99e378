@@ -1,0 +1,151 @@
+package db;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JFrame;
+import javax.swing.event.AncestorListener;
+
+public class main {
+	static Connection Connect;
+	static Statement stm;
+	static ResultSet rs;
+	static UIInterface ui;
+
+	public static void main(String[] args) {
+		try {
+			Connect = DriverManager.getConnection("jdbc:sqlserver://163.17.136.91; databaseName=1410232023",
+					"1410232023", "As874001");
+			stm = Connect.createStatement();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ui = new UIInterface();
+		ui.search.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String getBookName = ui.bookNameArea.getText();
+				String Command = "select * from bookDB  where bookId ='" + getBookName + "'";
+				String CommandBorrow = "select * from BorrowDB  where bookId ='" + getBookName + "'";
+				String CommandReturn = "select * from ReturnTime  where bookId ='" + getBookName + "'";
+
+				try {
+					rs = stm.executeQuery(Command);
+					StringBuffer buffer = new StringBuffer();
+
+					while (rs.next()) {
+						buffer.append(
+								"<html>書本編號:  " + rs.getString(1) + "<br>" + "書名:" + rs.getString(2) + "<br><html>");
+					}
+					ui.showBookArea.setText(buffer.toString());
+
+					rs = stm.executeQuery(CommandBorrow);
+					StringBuffer bufferBorrow = new StringBuffer();
+
+					while (rs.next()) {
+						bufferBorrow.append("<html>書本編號:  " + rs.getString(1) + "<br>" + "使用者編號:" + rs.getString(2)
+								+ "<br>" + "出租日期:" + rs.getString(3) + "<br><html>");
+					}
+					ui.showBorrowArea.setText(bufferBorrow.toString());
+
+					rs = stm.executeQuery(CommandReturn);
+					StringBuffer bufferReturn = new StringBuffer();
+
+					while (rs.next()) {
+						bufferReturn.append("<html>書本編號:  " + rs.getString(1) + "<br>" + "使用者編號:" + rs.getString(2)
+								+ "<br>" + "歸還日期:" + rs.getString(3) + "<br><html>");
+					}
+					ui.showReturnArea.setText(bufferReturn.toString());
+
+				} catch (Exception ex) {
+					ui.showBookArea.setText("error");
+
+				}
+			}
+		});
+
+		ui.Ins.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				setIns();
+			}
+		});
+
+		ui.Del.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				setDel();
+			}
+		});
+
+	}
+
+	private static void setIns() {
+
+		String Command = "INSERT INTO bookDB (bookId, bookName)VALUES ('" + ui.bookIdInsArea.getText() + "', '"
+				+ ui.bookNameInsArea.getText() + "' )";
+
+		try {
+			if (!ui.bookIdInsArea.getText().equals("") && !ui.bookNameInsArea.getText().equals("")) {
+				stm.executeUpdate(Command);
+				ui.showResult.setText("insert successful");
+			} else {
+				ui.showResult.setText("not null");
+
+			}
+
+		} catch (SQLException e) {
+			ui.showResult.setText("error");
+			e.printStackTrace();
+		}
+
+	}
+
+	private static void setDel() {
+
+		String Command = "DELETE FROM bookDB WHERE bookId = '" + ui.bookIdDelArea.getText() + "'";
+
+		try {
+			 if (!ui.bookIdDelArea.getText().equals("") ) {
+			stm.executeUpdate(Command);
+			ui.showDelResult.setText("DELETE successful");
+			 } else {
+			 ui.showDelResult.setText("not null");
+
+			 }
+
+		} catch (SQLException e) {
+			ui.showDelResult.setText("error");
+			e.printStackTrace();
+		}
+
+	}
+	private void setUpdate(){
+		String Command = "UPDATE bookDB SET bookName = 500 WHERE Store_Name = 'Los Angeles'";
+
+		try {
+			 if (!ui.bookIdDelArea.getText().equals("") ) {
+			stm.executeUpdate(Command);
+			ui.showDelResult.setText("DELETE successful");
+			 } else {
+			 ui.showDelResult.setText("not null");
+
+			 }
+
+		} catch (SQLException e) {
+			ui.showDelResult.setText("error");
+			e.printStackTrace();
+		}
+
+	}
+}

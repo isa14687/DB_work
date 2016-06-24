@@ -1,0 +1,41 @@
+package db;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class UIInterface {
+private JFrame View;
+	public UIInterface(){
+		 View = new JFrame();
+		View.setBounds(200, 100, 850, 530);
+		View.setLayout(null);
+		View.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setView();
+		
+	}
+	private void  setView(){
+
+		JLabel UserLabel = new JLabel("bookname:");
+		UserLabel.setBounds(10, 10, 50, 20);
+		UserLabel.setVisible(true);
+		
+		JTextArea UserArea = new JTextArea();
+		UserArea.setBounds(100, 10, 100, 20);
+  
+		JButton Login = new JButton("search");
+		Login.setBounds(10, 70, 90, 25);
+		
+		View.add(UserLabel);
+		View.add(UserArea);
+		View.add(PasswordArea);
+		View.add(Login);
+		
+		View.setVisible(true);
+	
+
+	}
+
+}

@@ -1,0 +1,143 @@
+package db;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class UIInterface {
+
+	private JFrame View;
+	public JLabel bookName;
+	public JLabel showBookArea;
+	public JLabel showBorrowArea;
+	public JLabel showReturnArea;
+	public JTextArea bookNameArea;
+	public JButton search;
+
+	public JLabel bookNameIns;
+	public JTextArea bookIdInsArea;
+	public JTextArea bookNameInsArea;
+	public JButton Ins;
+	public JLabel showResult;
+
+	public JLabel bookNameDel;
+	public JTextArea bookIdDelArea;
+	public JTextArea bookNameDelArea;
+	public JButton Del;
+	public JLabel showDelResult;
+	
+	public JLabel bookNameUpd;
+	public JTextArea bookIdUpdArea;
+	public JTextArea bookNameUpdArea;
+	public JButton Upd;
+	public JLabel showUpdResult;
+
+	public UIInterface() {
+		View = new JFrame();
+		View.setBounds(200, 100, 1050, 530);
+		View.setLayout(null);
+		View.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		setView();
+
+	}
+
+	private void setView() {
+
+		bookName = new JLabel("®Ñ¦W:");
+		bookName.setBounds(10, 10, 50, 20);
+
+		showBookArea = new JLabel("result:");
+		showBookArea.setBounds(10, 100, 100, 50);
+
+		showBorrowArea = new JLabel();
+		showBorrowArea.setBounds(10, 170, 200, 100);
+
+		showReturnArea = new JLabel();
+		showReturnArea.setBounds(10, 270, 200, 100);
+
+		bookNameArea = new JTextArea();
+		bookNameArea.setBounds(100, 10, 100, 20);
+
+		search = new JButton("search");
+		search.setBounds(10, 70, 90, 25);
+		// ----------------------------------------------
+		bookNameIns = new JLabel("ID:");
+		bookNameIns.setBounds(220, 10, 50, 20);
+
+		bookIdInsArea = new JTextArea();
+		bookIdInsArea.setBounds(320, 10, 100, 20);
+
+		bookNameInsArea = new JTextArea();
+		bookNameInsArea.setBounds(320, 50, 100, 20);
+
+		Ins = new JButton("Insert");
+		Ins.setBounds(220, 70, 90, 25);
+
+		showResult = new JLabel();
+		showResult.setBounds(220, 170, 100, 25);
+		// ----------------------------------------------
+		bookNameDel = new JLabel("ID:");
+		bookNameDel.setBounds(420, 10, 50, 20);
+
+		bookIdDelArea = new JTextArea();
+		bookIdDelArea.setBounds(520, 10, 100, 20);
+
+		bookNameDelArea = new JTextArea();
+		bookNameDelArea.setBounds(520, 50, 100, 20);
+
+		Del = new JButton("Delete");
+		Del.setBounds(420, 70, 90, 25);
+
+		showDelResult = new JLabel();
+		showDelResult.setBounds(420, 170, 100, 25);
+		// --------------------------------------------
+		bookNameUpd = new JLabel("ID:");
+		bookNameUpd.setBounds(620, 10, 50, 20);
+
+		bookIdUpdArea = new JTextArea();
+		bookIdUpdArea.setBounds(720, 10, 100, 20);
+
+		bookNameUpdArea = new JTextArea();
+		bookNameUpdArea.setBounds(720, 50, 100, 20);
+
+		Upd = new JButton("Update");
+		Upd.setBounds(620, 70, 90, 25);
+
+		showUpdResult = new JLabel();
+		showUpdResult.setBounds(720, 170, 100, 25);
+		
+		
+		View.add(bookName);
+		View.add(bookNameArea);
+		View.add(showBookArea);
+		View.add(showBorrowArea);
+		View.add(search);
+
+		View.add(bookNameIns);
+		View.add(bookIdInsArea);
+		View.add(bookNameInsArea);
+		View.add(Ins);
+		View.add(showResult);
+
+		View.add(bookNameDel);
+		View.add(bookIdDelArea);
+		// View.add(bookNameDelArea);
+		View.add(Del);
+		View.add(showDelResult);
+
+		View.add(bookNameUpd);
+		View.add(bookIdUpdArea);
+		 View.add(bookNameUpdArea);
+		View.add(Upd);
+		View.add(showUpdResult);
+		
+		View.setVisible(true);
+
+	}
+
+}
